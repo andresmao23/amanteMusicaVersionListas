@@ -1,7 +1,13 @@
 package prueba;
 
+import comparadores.ComparaCancionesAlbum;
+import comparadores.ComparaCancionesInterprete;
+import comparadores.ComparaMediosClave;
+import comparadores.ComparaMediosGenero;
+import comparadores.ComparaMediosTitulo;
 import excepciones.PersistenciaException;
 import interfaces.IPersistencia;
+import java.util.Collections;
 import java.util.List;
 import objetosNegocio.Cancion;
 import objetosNegocio.Genero;
@@ -312,6 +318,50 @@ public class Prueba {
         try {
             listaPeliculas = fachada.consultaPeliculasActor("Ingrid Bergman");
             System.out.println(listaPeliculas);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+
+        //PRUEBA DE LOS COMPARADORES
+        try {
+            // Obtiene la lista de canciones de la BD
+            listaCanciones = fachada.consultaCanciones();
+            // Despliega la lista de canciones
+            System.out.println("Lista de canciones:");
+            System.out.println(listaCanciones);
+            // Ordena la lista de canciones por su clave
+            Collections.sort(listaCanciones, new ComparaMediosClave());
+            // Despliega la lista de canciones ordenada por su clave
+            System.out.println("Lista de canciones ordenadas por clave:");
+            System.out.println(listaCanciones);
+            // Ordena la lista de canciones por su titulo
+            Collections.sort(listaCanciones, new ComparaMediosTitulo());
+            // Despliega la lista de canciones ordenada por su titulo
+            System.out.println("Lista de canciones ordenadas por titulo:");
+            System.out.println(listaCanciones);
+            // Ordena la lista de canciones por su titulo en orden inverso
+            Collections.reverse(listaCanciones);
+            // Despliega la lista de canciones ordenada por su titulo en orden
+            // inverso
+            System.out.println("Lista de canciones ordenadas por titulo en orden inverso:");
+            System.out.println(listaCanciones);
+            // Ordena la lista de canciones por su genero
+            Collections.sort(listaCanciones, new ComparaMediosGenero());
+            // Despliega la lista de canciones ordenada por su genero
+            System.out.println("Lista de canciones ordenadas por genero:");
+            System.out.println(listaCanciones);
+            
+            // Ordena la lista de canciones por su interprete
+            Collections.sort(listaCanciones, new ComparaCancionesInterprete());
+            // Despliega la lista de canciones ordenada por su interprete
+            System.out.println("Lista de canciones ordenadas por interprete:");
+            System.out.println(listaCanciones);
+            // Ordena la lista de canciones por su album
+            Collections.sort(listaCanciones, new ComparaCancionesAlbum());
+            // Despliega la lista de canciones ordenada por su album
+            System.out.println("Lista de canciones ordenadas por album:");
+            System.out.println(listaCanciones);
         } catch (PersistenciaException fe) {
             // Muestra el mensaje de error amistoso
             System.out.println("Error: " + fe.getMessage());
