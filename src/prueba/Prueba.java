@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package prueba;
 
-import excepciones.FachadaException;
-//import fachadas.FachadaArreglos;
-//import interfaces.IFachada;
-import java.util.Vector;
+import excepciones.PersistenciaException;
+import interfaces.IPersistencia;
+import java.util.List;
 import objetosNegocio.Cancion;
 import objetosNegocio.Genero;
+import objetosNegocio.Pelicula;
+import persistencia.PersistenciaListas;
 
 /**
  *
@@ -21,112 +17,306 @@ public class Prueba {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {        
-        
-        /*Prueba prueba = new Prueba();
-        IFachada fachada = new FachadaArreglos();
-        Vector lista = null;
-        Genero genero;
-        Cancion cancion;
-        
-        
-        //Se crean tres generos para canciones
-        Genero genero1 = new Genero("GC001", "Baladas", 'C');
-        Genero genero2 = new Genero("GC002", "Bossanova", 'C');
-        Genero genero3 = new Genero("GC003", "Rock", 'C');
-        
+    public static void main(String[] args) {
+
+        Prueba prueba = new Prueba();
+
+        // Crean la fachada de los objetos que permiten almacenar las
+        // canciones y peliculas en arreglos
+        IPersistencia fachada = new PersistenciaListas();
+        List<Genero> listaGeneros;
+        List<Cancion> listaCanciones;
+        List<Pelicula> listaPeliculas;
+
+        Genero genero = null;
+        Cancion cancion = null;
+
+        // Se agrega el género 1 al catálogo de géneros
         try {
-            fachada.agrega(genero1);
-            System.out.println("Se agregó el genero 1 al catálogo de géneros");
-        } catch (FachadaException fe) {
+            fachada.agrega(new Genero("GCB0001", "Balada", 'C'));
+            System.out.println("Se agrego el género 1 al catálogo de géneros");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
             System.out.println("Error: " + fe.getMessage() + " 1");
         }
-        
+        // Se agrega el género 2 al catálogo de géneros
         try {
-            fachada.agrega(genero2);
-            System.out.println("Se agregó el genero 2 al catálogo de géneros");
-        } catch (FachadaException fe) {
+            fachada.agrega(new Genero("GCB0002", "Bossanova", 'C'));
+            System.out.println("Se agrego el género 2 al catálogo de géneros");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
             System.out.println("Error: " + fe.getMessage() + " 2");
+
         }
-        
+
+        // Se agrega el género 3 al catálogo de géneros
         try {
-            fachada.agrega(genero3);
-            System.out.println("Se agregó el genero 3 al catálogo de géneros");
-        } catch (FachadaException fe) {
+            fachada.agrega(new Genero("GCR0003", "Rock", 'C'));
+            System.out.println("Se agrego el género 3 al catálogo de géneros");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
             System.out.println("Error: " + fe.getMessage() + " 3");
         }
-        
-        //Se agrega de nuevo el genero 1 al catálogo de géneros - generación de ERROR
+        // Se agrega de nuevo el género 1 al catálogo de géneros
         try {
-            fachada.agrega(genero1);
-            System.out.println("Se agregó el genero 1 al catálogo de géneros");
-        } catch (FachadaException fe) {
-            fe.printStackTrace();
+            fachada.agrega(new Genero("GCB0001", "Balada", 'C'));
+            System.out.println("Se agrego el género 1 al catálogo de géneros");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
             System.out.println("Error: " + fe.getMessage() + " 1");
         }
-        
-        
-        //Se crean tres generos para películas
-        Genero genero4 = new Genero("GP001", "Drama", 'P');
-        Genero genero5 = new Genero("GP002", "Ciencia Ficción", 'P');
-        Genero genero6 = new Genero("GP003", "Comedia", 'P');
-        
+        // Se agrega el género 4 al catálogo de géneros
         try {
-            fachada.agrega(genero4);
-            System.out.println("Se agregó el genero 4 al catálogo de géneros");
-        } catch (FachadaException fe) {
+            fachada.agrega(new Genero("GPD0001", "Drama", 'P'));
+            System.out.println("Se agrego el género 4 al catálogo de géneros");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
             System.out.println("Error: " + fe.getMessage() + " 4");
         }
-        
+        // Se agrega el género 5 al catálogo de géneros
         try {
-            fachada.agrega(genero5);
-            System.out.println("Se agregó el genero 5 al catálogo de géneros");
-        } catch (FachadaException fe) {
+            fachada.agrega(new Genero("GPC0002", "Ciencia Ficción", 'P'));
+            System.out.println("Se agrego el género 5 al catálogo de géneros");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
             System.out.println("Error: " + fe.getMessage() + " 5");
         }
-        
+        // Se agrega el género 6 al catálogo de géneros
         try {
-            fachada.agrega(genero6);
-            System.out.println("Se agregó el genero 6 al catálogo de géneros");
-        } catch (FachadaException fe) {
+            fachada.agrega(new Genero("GPC0003", "Comedia", 'P'));
+            System.out.println("Se agrego el género 6 al catálogo de géneros");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
             System.out.println("Error: " + fe.getMessage() + " 6");
         }
-        
-        //Despliega el contenido del catálogo de generos
-        System.out.println("********** Lista de géneros **********");
+        // Despliega el contenido del catalogo de géneros
+        System.out.println("Lista de géneros");
         try {
-            System.out.println(fachada.consultaGeneros());
-        } catch (FachadaException fe) {
+            listaGeneros = fachada.consultaGeneros();
+            System.out.println(listaGeneros);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
             System.out.println("Error: " + fe.getMessage());
         }
-        
-        //Se modifica el género de clave "GC002", a "Samba"
+
+        // Se modifica el genero de clave "GCB0002", a "Samba"
         try {
-            genero = fachada.obten(new Genero("GC002"));
+            genero = fachada.obten(new Genero("GCB0002"));
             genero.setNombre("Samba");
             fachada.actualiza(genero);
-            System.out.println("Se actualizó el género de clave GC002");
-        } catch (FachadaException fe) {
-            System.out.println("Error: " + fe.getMessage() + " GC002");
+            System.out.println("Se actualizo el genero de clave GCB0002");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage() + "GCB0002");
         }
-        
-        //Se elimina el género de clave "GP003" del catálogo de generos
+        // Se elimina el género "GPC0003" del catalogo de generos
         try {
-            fachada.elimina(new Genero("GP003"));
-            System.out.println("Se eliminó el género de clave GP003");
-        } catch (FachadaException fe) {
-            System.out.println("Error: " + fe.getMessage() + " GP003");
+            fachada.elimina(new Genero("GPC0003"));
+            System.out.println("Se elimino el genero de clave GPC0003");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage() + " GPC0003");
         }
-        
-        //Despliega el contenido del catálogo de generos
-        System.out.println("********** Lista de géneros **********");
+        // Se elimina el género "GPM0004" (inexistente) del catalogo de generos
         try {
-            System.out.println(fachada.consultaGeneros());
-        } catch (FachadaException fe) {
+            fachada.elimina(new Genero("GPM0004"));
+            System.out.println("Se elimino el genero de clave GPM0004");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage() + " GPM0004");
+        }
+        // Despliega el contenido del catalogo de géneros
+        System.out.println("Lista de géneros");
+        try {
+            listaGeneros = fachada.consultaGeneros();
+            System.out.println(listaGeneros);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
             System.out.println("Error: " + fe.getMessage());
-        }*/
-    
-        
+        }
+        // Despliega el contenido del catalogo de géneros de canciones
+        System.out.println("Lista de géneros de canciones");
+        try {
+            listaGeneros = fachada.consultaGenerosCanciones();
+            System.out.println(listaGeneros);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+        // Despliega el contenido del catalogo de género de películas
+        System.out.println("Lista de géneros de películas");
+        try {
+            listaGeneros = fachada.consultaGenerosPeliculas();
+            System.out.println(listaGeneros);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+
+        // Se obtiene el genero cuya clave es "GCB0001"
+        try {
+            genero = fachada.obten(new Genero("GCB0001"));
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+        // Se agrega la canción 1 al catálogo de canciones
+        try {
+            fachada.agrega(new Cancion("John Lennon", "The Beatles", "Let it be", "CBB0001", "The long and winding road", genero, 3));
+            System.out.println("Se agrego la cancion 1");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage() + " 1");
+        }
+        // Se intenta agregar de nuevo la canción 1 al catálogo de canciones
+        try {
+            fachada.agrega(new Cancion("John Lennon", "The Beatles", "Let it be", "CBB0001", "The long and winding road", genero, 3));
+            System.out.println("Se agrego la cancion 1");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage() + " 1");
+        }
+        // Se obtiene el genero cuya clave es "GCB0002"
+        try {
+            genero = fachada.obten(new Genero("GCB0002"));
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+        // Se agrega la canción 2 al catálogo de canciones
+        try {
+            fachada.agrega(new Cancion("Los Indios Tabajaras", "Antonio Carlos Jobim", "Bossanova Jazz Vol. 1", "CSD0002", "Garota de Ipanema", genero, 3));
+            System.out.println("Se agrega la cancion 2");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage() + " 2");
+        }
+        // Se agrega la canción 3 al catálogo de canciones
+        try {
+            fachada.agrega(new Cancion("Joao Gilberto", "Joao Gilberto", "Bossanova Jazz Vol. 1", "CSB0003", "Desafinado", genero, 4));
+            System.out.println("Se agrega la cancion 3");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage() + " 3");
+        }
+
+        // Se lista el catálogo de canciones
+        System.out.println("Lista de canciones:");
+        try {
+            listaCanciones = fachada.consultaCanciones();
+            System.out.println(listaCanciones);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+        // Se actualiza la canción de clave "CBB0001" al genero "GCR0003"
+        try {
+            // Obtiene el género 3 del cátalogo de géneros de canciones
+            genero = fachada.obten(new Genero("GCR0003"));
+            if (genero != null) {
+                // Obtiene la canción 1 del cátalogo de canciones
+                cancion = fachada.obten(new Cancion("CBB0001"));
+                if (cancion != null) {
+                    // Se actualiza la canción 1
+                    cancion.setGenero(genero);
+                    fachada.actualiza(cancion);
+                    System.out.println(
+                            "Se actualizo la canción de clave CBB0001 al genero GCR0003");
+                } else {
+                    System.out.println("No existe la canción CBB0001");
+                }
+            } else {
+                System.out.println("No existe el género GCR0003");
+            }
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+        // Se elimina la canción de clave "CSB0003"
+        try {
+            fachada.elimina(new Cancion("CSB0003"));
+            System.out.println("Se elimina la cancion de clave CSB0003");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage() + " CSB0003");
+        }
+        // Se lista el catálogo de canciones
+        System.out.println("Lista de canciones:");
+        try {
+            listaCanciones = fachada.consultaCanciones();
+            System.out.println(listaCanciones);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+        // Se lista las canciones con el interprete "The Beatles"
+        System.out.println("Lista de canciones de The Beatles:");
+        try {
+            listaCanciones = fachada.consultaCancionesInterprete("The Beatles");
+            System.out.println(listaCanciones);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+
+        // Se lista las canciones de samba, "GCB0002"
+        System.out.println("Lista de canciones de Samba:");
+        try {
+            listaCanciones = fachada.consultaCancionesGenero("GCB0002");
+            System.out.println(listaCanciones);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+        // Se obtiene el genero cuya clave es "GPD0001"
+        try {
+            genero = fachada.obten(new Genero("GPD0001"));
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+        // Se agrega la película 1 al catálogo de películas
+        try {
+            fachada.agrega(new Pelicula("Humphrey Bogart", "Ingrid Bergman", "Michael Curtiz", "PED0001", "Casa Blanca", genero, 102));
+            System.out.println("Se agrego la película 1");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage() + " 1");
+        }
+        // Se obtiene el genero cuya clave es "GPC0002"
+        try {
+            genero = fachada.obten(new Genero("GPC0002"));
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+        // Se agrega la película 2 al catálogo de películas
+        try {
+            fachada.agrega(new Pelicula("Keir Dullea", "Gary Lockwood", "Stanley Kubrick", "PCF0002", "2001 Space Odyssey", genero, 141));
+            System.out.println("Se agrego la película 2");
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage() + " 2");
+        }
+        // Se lista el catálogo de películas
+        System.out.println("Lista de peliculas:");
+        try {
+            listaPeliculas = fachada.consultaPeliculas();
+            System.out.println(listaPeliculas);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+        // Se lista las películas de Ingrid Bergman
+        System.out.println("Lista de peliculas de Ingrid Bergman:");
+        try {
+            listaPeliculas = fachada.consultaPeliculasActor("Ingrid Bergman");
+            System.out.println(listaPeliculas);
+        } catch (PersistenciaException fe) {
+            // Muestra el mensaje de error amistoso
+            System.out.println("Error: " + fe.getMessage());
+        }
+
     }
-    
+
 }
