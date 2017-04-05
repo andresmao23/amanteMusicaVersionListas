@@ -5,7 +5,10 @@
  */
 package dao;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import objetosNegocio.Medio;
 import objetosNegocio.Pelicula;
 
 /**
@@ -14,37 +17,36 @@ import objetosNegocio.Pelicula;
  */
 public class Peliculas extends Medios {
     
-    /*private Pelicula []peliculas;
-    
-    public Peliculas(int tamCatalogo){
-        peliculas = new Pelicula[tamCatalogo];
-        medios = peliculas;                
+    private List<Medio> peliculas;
+
+    public Peliculas() {
+        peliculas = medios;
     }
     
-    public Pelicula obten(Pelicula Pelicula){
-        return (Pelicula) super.obten(Pelicula);
+    public Pelicula obten(Pelicula pelicula){
+        return (Pelicula) super.obten(pelicula);
     }
     
-    public Vector listaActor(String actor){
-        Vector lista = new Vector();
+    public List<Pelicula> listaActor(String actor){
+        List<Pelicula> lista = new ArrayList<Pelicula>();
         
-        for (int i = 0; i < numMedios; i++) {
-            if(peliculas[i].getActor1().equals(actor) || peliculas[i].getActor2().equals(actor))
-                lista.add(peliculas[i]);
+        for(Iterator<Medio> iterador = peliculas.iterator(); iterador.hasNext();)        {
+            Pelicula pelicula = (Pelicula) iterador.next();
+            if(actor.equals(pelicula.getActor1()) || actor.equals(pelicula.getActor2()))
+                lista.add(pelicula);
         }
-        
         return lista;
     }
     
-    public Vector listaDirector(String director){
-        Vector lista = new Vector();
+    public List<Pelicula> listaDirector(String director){
+        List<Pelicula> lista = new ArrayList<Pelicula>();
         
-        for (int i = 0; i < numMedios; i++) {
-            if(peliculas[i].getDirector().equals(director))
-                lista.add(peliculas[i]);
+        for(Iterator<Medio> iterador = peliculas.iterator(); iterador.hasNext();)        {
+            Pelicula pelicula = (Pelicula) iterador.next();
+            if(director.equals(pelicula.getDirector()) || director.equals(pelicula.getDirector()))
+                lista.add(pelicula);
         }
-        
         return lista;
-    }*/
+    }
     
 }

@@ -1,7 +1,10 @@
 package dao;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import objetosNegocio.Cancion;
+import objetosNegocio.Medio;
 
 /**
  *
@@ -9,48 +12,50 @@ import objetosNegocio.Cancion;
  */
 public class Canciones extends Medios {
     
-    /*private Cancion []canciones;
+    private List<Medio> canciones;
 
-    public Canciones(int tamCatalogo) {
-        canciones = new Cancion[tamCatalogo];
-        medios = canciones;
+    public Canciones() {
+        canciones = medios;
     }
     
     public Cancion obten(Cancion cancion){
         return (Cancion) super.obten(cancion);
     }
     
-    public Vector listaInterprete(String interprete){
-        Vector lista = new Vector();
+    public List<Cancion> listaInterprete(String interprete){
+        List<Cancion> lista = new ArrayList<Cancion>();
         
-        for (int i = 0; i < numMedios; i++) {
-            if(interprete.equals(canciones[i].getInterprete()))
-                lista.add(canciones[i]);
+        for(Iterator<Medio> iterador = canciones.iterator(); iterador.hasNext();){
+            Cancion cancion = (Cancion) iterador.next();
+            if(interprete.equals(cancion.getInterprete()))
+                lista.add(cancion);
         }
         
         return lista;
     }
     
-    public Vector listaAutor(String autor){
-        Vector lista = new Vector();
+    public List<Cancion> listaAutor(String autor){
+        List<Cancion> lista = new ArrayList<Cancion>();
         
-        for (int i = 0; i < numMedios; i++) {
-            if(autor.equals(canciones[i].getAutor()))
-                lista.add(canciones[i]);
+        for(Iterator<Medio> iterador = canciones.iterator(); iterador.hasNext();){
+            Cancion cancion = (Cancion) iterador.next();
+            if(autor.equals(cancion.getAutor()))
+                lista.add(cancion);
         }
         
         return lista;
     }
     
-    public Vector listaAlbum(String album){
-        Vector lista = new Vector();
+    public List<Cancion> listaAlbum(String album){
+        List<Cancion> lista = new ArrayList<Cancion>();
         
-        for (int i = 0; i < numMedios; i++) {
-            if(album.equals(canciones[i].getAlbum()))
-                lista.add(canciones[i]);
+        for(Iterator<Medio> iterador = canciones.iterator(); iterador.hasNext();){
+            Cancion cancion = (Cancion) iterador.next();
+            if(album.equals(cancion.getAlbum()))
+                lista.add(cancion);
         }
         
         return lista;
-    }*/
+    }
     
 }
